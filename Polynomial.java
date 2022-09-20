@@ -2,7 +2,7 @@ public class Polynomial {
 	double[] coefficients;
 	
 	public Polynomial(){
-		coefficients = [0];
+		coefficients = {0};
 	}
 	
 	public Polynomial(double arr){
@@ -14,10 +14,13 @@ public class Polynomial {
 	
 	public Polynomial add(Polynomial other){
 		int len = other.coefficients.length;
+		double[] arr;
 		for (int i = 0 ; i < len ; i++){
-			coefficients[i] += other.coefficients[i];
+			arr[i] += other.coefficients[i];
 		}
+		return new Polynomial(arr);
 	}
+	
 	public double evaluate(double val){
 		int len = arr.length;
 		double sum = 0;
