@@ -14,7 +14,8 @@ public class Driver {
    System.out.println("1 is a root of s"); 
   else 
    System.out.println("1 is not a root of s"); 
+  Polynomial p4 = new Polynomial("text.txt");
+System.out.println(p4.evaluate(2));
+  p1.saveToFile("text.txt");
  } 
-
-Polynomial p4 = new Polynomial("text.txt");
 } 

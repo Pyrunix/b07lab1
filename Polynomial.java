@@ -22,22 +22,37 @@ public class Polynomial {
       }
 
       public Polynomial(String s){
-	    BufferedReader f = new BufferedReader(new FileReader(s));
-            String str = f.readLine();
-            str = str.replace("-", "+-");
-            String[] terms = str.split("+|\\x");
-            coefficients = new double[terms.length / 2];
-            exp = new int[terms.length / 2];
-            for (int i = 0 ; i < terms.length ; i++){
-                if (i % 2 == 0){
-                    coefficients[i] = Double.parseDouble(terms[i]);
-                } else {
-                    exp[i] = Integer.parseInt(terms[i]);
-                }
-            }
+	    BufferedReader f = null;
+	    String str = new String();
+	    try {
+		f = new BufferedReader(new FileReader(s));
+		try {
+			str = f.readLine();
+		} catch (IOException e){
+		}
+            	str = str.replace("-", "+-");
+            	String[] terms = str.split("\\+|x");
+            	coefficients = new double[terms.length / 2];
+            	exp = new int[terms.length / 2];
+		int count1 = 0;
+		int count2 = 0;
+            	for (int i = 0 ; i < terms.length ; i++){
+                	if (i % 2 == 0){
+                    		coefficients[count1] = Double.parseDouble(terms[i]);
+				count1++;
+                	} else {
+                    		exp[count2] = Integer.parseInt(terms[i]);
+				count2++;
+                	}
+            	}
+	    }
+	    catch(FileNotFoundException e){
+	    
+	    }
       }
 
       public void saveToFile(String s){
+	try {
             FileWriter out = new FileWriter(s);
             String input = new String("");
             for (int i = 0 ; i < coefficients.length ; i++){
@@ -50,7 +65,12 @@ public class Polynomial {
 			}
 		}
             }
+	    System.out.println("Writing to file: " + input);
             out.write(input);
+	    out.flush();
+	    out.close();
+	} catch (IOException e){
+	}
       }
 
       public boolean exp_contains(int val){
