@@ -21,7 +21,7 @@ public class Polynomial {
             }
       }
 
-      public Polynomial(String s){
+      public Polynomial(File s){
 	    BufferedReader f = null;
 	    String str = new String();
 	    try {
